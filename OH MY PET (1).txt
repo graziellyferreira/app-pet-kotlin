@@ -1,0 +1,757 @@
+﻿LAYOUT CAPA
+
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <Button
+        android:id="@+id/btnEntrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="163dp"
+        android:backgroundTint="#35A6C7"
+        android:backgroundTintMode="add"
+        android:text="Entrar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSenha" />
+
+
+    <EditText
+        android:id="@+id/edLogin"
+        android:layout_width="234dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toBottomOf="@+id/txtLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <EditText
+        android:id="@+id/edSenha"
+        android:layout_width="238dp"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:inputType="numberPassword"
+        app:layout_constraintBottom_toBottomOf="@+id/txtSenha"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSenha" />
+
+
+    <TextView
+        android:id="@+id/txtLogin"
+        android:layout_width="76dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="33dp"
+        android:text="Login"
+        app:layout_constraintBottom_toTopOf="@+id/txtSenha"
+        app:layout_constraintEnd_toEndOf="@+id/txtSenha"
+        app:layout_constraintHorizontal_bias="0.184"
+        app:layout_constraintStart_toEndOf="@+id/txtSenha"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+
+    <TextView
+        android:id="@+id/txtSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="27dp"
+        android:text="Senha"
+        app:layout_constraintBottom_toTopOf="@+id/btnEntrar"
+        app:layout_constraintStart_toStartOf="@+id/edSenha"
+        app:layout_constraintTop_toBottomOf="@+id/txtLogin" />
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="354dp"
+        android:layout_height="286dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="33dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/oh_my_pet_" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+APLICAÇÃO CAPA
+
+
+
+
+package com.example.duastelasapp
+
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
+
+        private infix fun Any.trim(unit: Unit): Any {
+            TODO("Not yet implemented")
+        }
+
+
+        private fun Any.isEmpty(): Boolean {
+            TODO("Not yet implemented")
+        }
+
+
+        class MainActivity : AppCompatActivity() {
+            override fun onCreate(savedInstanceState: Bundle?) {
+                super.onCreate(savedInstanceState)
+                enableEdgeToEdge()
+                setContentView(R.layout.activity_main)
+
+
+                val edLogin: EditText = findViewById(R.id.edLogin)
+                val user = "loginteste"
+                edLogin.setOnClickListener {
+                    val login = edLogin.text.toString().trim()
+
+
+                    if (login.isEmpty()){
+                        Toast.makeText(this, "Opa! Este campo está vazio, por favor preencha-o", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+
+                val edSenha: EditText = findViewById(R.id.edSenha)
+                val key = "123456"
+                edSenha.setOnClickListener {
+                    val senha = edSenha.text.toString().trim()
+
+
+                    if (senha.length >= 6){
+                        Toast.makeText(this, "Seja bem vindo(a)! :D", Toast.LENGTH_SHORT).show()
+                    }
+
+
+                    else {
+                        Toast.makeText(this,"Opa! Sua senha é muito pequena... Tente novamente", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+
+                val btnEntrar:Button = findViewById(R.id.btnEntrar)
+
+
+                btnEntrar.setOnClickListener {
+                    val intent = Intent (this, SecondActivity::class.java)
+                    startActivity(intent)
+
+
+                }
+
+
+
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+    }
+}
+
+
+
+
+LAYOUT PRIMERA TELA
+
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SecondActivity">
+
+
+
+
+    <Button
+        android:id="@+id/btnGatos"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="#35A6C7"
+        android:backgroundTintMode="add"
+        android:text="Gatos"
+        app:layout_constraintBottom_toTopOf="@+id/btnCachorros"
+        app:layout_constraintEnd_toEndOf="@+id/btnCachorros"
+        app:layout_constraintStart_toStartOf="@+id/btnCachorros"
+        app:layout_constraintTop_toBottomOf="@+id/txtInfo" />
+
+
+    <TextView
+        android:id="@+id/txtInfo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginEnd="67dp"
+        android:text="Por qual aba você gostaria de navegar?"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnGatos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+
+    <Button
+        android:id="@+id/btnCachorros"
+        android:layout_width="130dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="173dp"
+        android:backgroundTint="#35A6C7"
+        android:backgroundTintMode="add"
+        android:text="Cachorros"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/txtInfo"
+        app:layout_constraintStart_toStartOf="@+id/txtInfo"
+        app:layout_constraintTop_toBottomOf="@+id/btnGatos" />
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="348dp"
+        android:layout_height="297dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="79dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="21dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/oh_my_pet_2" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+APLICAÇÃO PRIMEIRA TELA
+
+
+
+
+package com.example.duastelasapp
+
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
+
+
+
+class SecondActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_second)
+
+
+        val btnCachorros:Button = findViewById(R.id.btnCachorros)
+
+
+        btnCachorros.setOnClickListener {
+            val intent = Intent (this,MainActivity2::class.java)
+            startActivity(intent)
+        }
+
+
+
+
+        val btnGatos: Button = findViewById(R.id.btnGatos)
+
+
+            btnGatos.setOnClickListener {
+                val intent = Intent (this, MainActivity3::class.java)
+                startActivity(intent)
+            }
+
+
+
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+    }
+}
+
+
+
+
+
+
+LAYOUT SEGUNDA TELA
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity2">
+
+
+
+
+    <CheckBox
+        android:id="@+id/chkHigiene"
+        android:layout_width="174dp"
+        android:layout_height="0dp"
+        android:buttonTint="#9B63C6"
+        android:text="Higiene e Limpeza"
+        app:layout_constraintBottom_toTopOf="@+id/chkRacao"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+
+    <CheckBox
+        android:id="@+id/chkBrinquedos"
+        android:layout_width="175dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="340dp"
+        android:layout_marginBottom="262dp"
+        android:buttonTint="#9B63C6"
+        android:text="Brinquedos"
+        app:layout_constraintBottom_toTopOf="@+id/btnVoltar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <CheckBox
+        android:id="@+id/chkRacao"
+        android:layout_width="175dp"
+        android:layout_height="0dp"
+        android:buttonTint="#9B63C6"
+        android:text="Ração"
+        app:layout_constraintBottom_toTopOf="@+id/chkMedicamentos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chkHigiene" />
+
+
+    <CheckBox
+        android:id="@+id/chkMedicamentos"
+        android:layout_width="174dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="56dp"
+        android:buttonTint="#9B63C6"
+        android:text="Medicamentos"
+        app:layout_constraintBottom_toTopOf="@+id/btnComprar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chkRacao" />
+
+
+    <Button
+        android:id="@+id/btnComprar"
+        android:layout_width="132dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="14dp"
+        android:backgroundTint="#35A6C7"
+        android:backgroundTintMode="add"
+        android:text="Comprar"
+        app:layout_constraintBottom_toTopOf="@+id/btnVoltar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chkMedicamentos" />
+
+
+    <Button
+        android:id="@+id/btnVoltar"
+        android:layout_width="232dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="33dp"
+        android:backgroundTint="#FA786B"
+        android:backgroundTintMode="add"
+        android:text="Voltar à tela anterior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chkBrinquedos" />
+
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="374dp"
+        android:layout_height="373dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/chkHigiene"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/oh_my_pet_2" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+APLICAÇÃO SEGUNDA TELA
+
+
+
+
+package com.example.duastelasapp
+
+
+import android.os.Bundle
+import android.widget.Button
+import android.widget.CheckBox
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
+
+class MainActivity2 : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_main2)
+
+
+
+
+        lateinit var chkRacao: CheckBox
+        lateinit var chkBrinquedos: CheckBox
+        lateinit var chkMedicamentos: CheckBox
+        lateinit var chkHigiene: CheckBox
+        lateinit var btnComprar: Button
+
+
+        title = "Oh My Pet!!"
+
+
+        chkRacao = findViewById(R.id.chkRacao)
+        chkBrinquedos = findViewById(R.id.chkBrinquedos)
+        chkMedicamentos = findViewById(R.id.chkMedicamentos)
+        chkHigiene = findViewById(R.id.chkHigiene)
+        btnComprar = findViewById(R.id.btnComprar)
+
+
+        btnComprar.setOnClickListener {
+            var total = 0.0
+
+
+            if (chkRacao.isChecked) {
+                total = total + 213.90
+            }
+            if (chkBrinquedos.isChecked) {
+                total = total + 39.90
+            }
+            if (chkMedicamentos.isChecked) {
+                total = total + 117.50
+            }
+            if (chkHigiene.isChecked) {
+                total = total + 91.12
+            }
+
+
+
+
+            val dial = AlertDialog.Builder(this)
+            dial.setTitle("Aviso!")
+            dial.setMessage("O valor total da(s) sua(s) compra(s) é $total.")
+            dial.show()
+
+
+
+
+            val btnVoltar: Button = findViewById(R.id.btnVoltar)
+            btnVoltar.setOnClickListener {
+                finish()
+            }
+
+
+
+
+        }
+
+
+
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+    }
+}
+
+
+
+
+
+
+LAYOUT TERCEIRA TELA
+
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity3">
+
+
+
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="323dp"
+        android:layout_height="286dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="41dp"
+        app:layout_constraintBottom_toTopOf="@+id/chkSaches"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/oh_my_pet_2" />
+
+
+    <CheckBox
+        android:id="@+id/chkMedicamentos2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:buttonTint="#50C786"
+        android:text="Medicamentos"
+        app:layout_constraintBottom_toTopOf="@+id/chkAreia"
+        app:layout_constraintEnd_toEndOf="@+id/chkSaches"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/chkAreia"
+        app:layout_constraintTop_toBottomOf="@+id/chkAcessorios" />
+
+
+    <CheckBox
+        android:id="@+id/chkAreia"
+        android:layout_width="237dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="26dp"
+        android:buttonTint="#50C786"
+        android:text="Areia Sanitária e Acessórios"
+        app:layout_constraintBottom_toTopOf="@+id/btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chkMedicamentos2" />
+
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="246dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="43dp"
+        android:backgroundTint="#FA786B"
+        android:backgroundTintMode="add"
+        android:text="Voltar à tela anterior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.575"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn" />
+
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="111dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="#35A6C7"
+        android:backgroundTintMode="add"
+        android:text="Comprar"
+        app:layout_constraintBottom_toTopOf="@+id/btnBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chkAreia" />
+
+
+    <CheckBox
+        android:id="@+id/chkAcessorios"
+        android:layout_width="217dp"
+        android:layout_height="51dp"
+        android:buttonTint="#50C786"
+        android:text="Brinquedos e Acessórios"
+        app:layout_constraintBottom_toTopOf="@+id/chkMedicamentos2"
+        app:layout_constraintEnd_toEndOf="@+id/chkMedicamentos2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/chkSaches"
+        app:layout_constraintTop_toBottomOf="@+id/chkSaches" />
+
+
+    <CheckBox
+        android:id="@+id/chkSaches"
+        android:layout_width="207dp"
+        android:layout_height="0dp"
+        android:buttonTint="#50C786"
+        android:text="Sachês e Petiscos"
+        app:layout_constraintBottom_toTopOf="@+id/chkAcessorios"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+APLICAÇÃO TERCEIRA TELA
+
+
+
+
+package com.example.duastelasapp
+
+
+import android.os.Bundle
+import android.widget.Button
+import android.widget.CheckBox
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
+
+class MainActivity3 : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_main3)
+
+
+
+
+        lateinit var chkSaches: CheckBox
+        lateinit var chkAcessorios: CheckBox
+        lateinit var chkMedicamentos2: CheckBox
+        lateinit var chkAreia: CheckBox
+        lateinit var btn: Button
+
+
+        title = "Oh My Pet!!"
+
+
+        chkSaches = findViewById(R.id.chkSaches)
+        chkAcessorios = findViewById(R.id.chkAcessorios)
+        chkMedicamentos2 = findViewById(R.id.chkMedicamentos2)
+        chkAreia = findViewById(R.id.chkAreia)
+        btn = findViewById(R.id.btn)
+
+
+
+
+        btn.setOnClickListener {
+            var total = 0.0
+
+
+            if(chkSaches.isChecked) {
+                total = total + 42.50
+            }
+            if (chkAcessorios.isChecked) {
+                total = total + 75.09
+            }
+            if (chkMedicamentos2.isChecked) {
+                total = total + 174.68
+            }
+            if (chkAreia.isChecked) {
+                total = 109.90
+            }
+
+
+            val dial = AlertDialog.Builder(this)
+            dial.setTitle("Aviso!")
+            dial.setMessage("O valor total da(s) sua(s) compra(s) é $total.")
+            dial.show()
+
+
+            val btnBack: Button = findViewById(R.id.btnBack)
+            btnBack.setOnClickListener {
+                finish()
+            }
+
+
+
+
+        }
+
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+    }
+}
